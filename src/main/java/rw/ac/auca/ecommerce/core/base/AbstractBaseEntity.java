@@ -7,7 +7,7 @@ import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
-
+import rw.ac.auca.ecommerce.core.base.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -21,6 +21,7 @@ import java.util.UUID;
 @Setter
 @MappedSuperclass
 public abstract class AbstractBaseEntity extends AbstractAuditEntity{
+    @SuppressWarnings("deprecation")
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -31,4 +32,16 @@ public abstract class AbstractBaseEntity extends AbstractAuditEntity{
 
     @Column(name = "active" , nullable = false)
     private boolean active = Boolean.TRUE;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
 }

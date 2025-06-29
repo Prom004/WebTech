@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product List</title>
+</head>
+<body>
+    <div>
+        <h1>Page Navigation</h1>
+        <a th:href="@{/product/list}"> Product List</a> <br/>
+        <a th:href="@{/product/add}"> Add Product</a> <br/>
+        <a th:href="@{/customer/search/all}"> Customer List</a> <br/>
+        <a th:href="@{/customer/register}"> Register Customer</a> <br/>
+        <a th:href="@{/order/cart}"> View Cart</a> <br/>
+    </div>
+    <h1>Product List</h1>
+    <div>
+        <table border="2">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product : ${products}">
+                    <td th:text="${product.name}"></td>
+                    <td th:text="${product.description}"></td>
+                    <td th:text="${product.price}"></td>
+                    <td th:text="${product.stock}"></td>
+                    <td>
+                        <a th:href="@{'/product/details/' + ${product.id}}">Details</a> |
+                        <a th:href="@{'/product/edit/' + ${product.id}}">Edit</a> |
+                        <a th:href="@{'/product/delete/' + ${product.id}}">Delete</a> |
+                        <a th:href="@{'/order/add-to-cart/' + ${product.id}}">Add to Cart</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

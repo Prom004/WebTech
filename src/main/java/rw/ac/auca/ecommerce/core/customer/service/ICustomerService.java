@@ -5,13 +5,18 @@ import rw.ac.auca.ecommerce.core.customer.model.Customer;
 import java.util.List;
 import java.util.UUID;
 
+import lombok.AllArgsConstructor;
+
 /**
  * The class ICustomerService.
  *
  * @author Jeremie Ukundwa Tuyisenge
  * @version 1.0
  */
-public interface ICustomerService {
+
+
+ public interface ICustomerService {
+
     // method signature or definition
     Customer registerCustomer(Customer theCustomer);
     Customer updateCustomer(Customer theCustomer);

@@ -1,9 +1,9 @@
 package rw.ac.auca.ecommerce.core.customer.service;
 
-import lombok.AllArgsConstructor;
+// import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.ObjectNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rw.ac.auca.ecommerce.core.customer.model.Customer;
 import rw.ac.auca.ecommerce.core.customer.repository.ICustomerRepository;
@@ -37,10 +37,12 @@ public class CustomerServiceImpl implements ICustomerService{
 
     @Override
     public Customer updateCustomer(Customer theCustomer) {
-        Customer found = findCustomerByIdAndState(theCustomer.getId() , Boolean.TRUE);
+        Customer found = findCustomerByIdAndState(theCustomer.getId() , true);
         if(Objects.nonNull(found)){
             found.setFirstName(theCustomer.getFirstName());
-            ///....provide all attributes
+            found.setLastName(theCustomer.getLastName());
+            found.setEmail(theCustomer.getEmail());
+            found.setPhoneNumber(theCustomer.getPhoneNumber());
             return customerRepository.save(found);
         }
         throw new ObjectNotFoundException(Customer.class , "Customer Object not found");
@@ -48,9 +50,11 @@ public class CustomerServiceImpl implements ICustomerService{
 
     @Override
     public Customer deleteCustomer(Customer theCustomer) {
-        Customer found = findCustomerByIdAndState(theCustomer.getId() , Boolean.TRUE);
+        Customer found = findCustomerByIdAndState(theCustomer.getId() , true);
         if(Objects.nonNull(found)){
+            // Assuming Customer class does not have setActive, so remove or handle differently
             found.setActive(Boolean.FALSE);
+            // Instead, delete or mark inactive in repository if supported
             return customerRepository.save(found);
         }
         throw new ObjectNotFoundException(Customer.class , "Customer Object not found");

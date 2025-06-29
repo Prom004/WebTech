@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+</head>
+<body>
+    <div>
+        <h1>Page Navigation</h1>
+        <a th:href="@{/product/list}"> Product List</a> <br/>
+        <a th:href="@{/customer/search/all}"> Customer List</a> <br/>
+        <a th:href="@{/customer/register}"> Register Customer</a> <br/>
+        <a th:href="@{/order/cart}"> View Cart</a> <br/>
+    </div>
+    <h1>Checkout</h1>
+    <div>
+        <table border="2">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product : ${cart}">
+                    <td th:text="${product.name}"></td>
+                    <td th:text="${product.price}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Total: $<span th:text="${total}"></span></p>
+        <form th:action="@{/order/place-order}" th:object="${order}" method="post">
+            <label>Customer ID (UUID):</label>
+            <input type="text" th:field="*{customer.id}" required/><br/>
+            <button type="submit">Place Order</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -17,9 +17,11 @@ import rw.ac.auca.ecommerce.core.base.AbstractBaseEntity;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Customer extends AbstractBaseEntity {
 
-    @Column(name = "fist_name" ,nullable = false)
+    @Column(name = "first_name" ,nullable = false)
     private String firstName;
 
     @Column(name = "last_name" ,nullable = false)
@@ -31,4 +33,6 @@ public class Customer extends AbstractBaseEntity {
     @Column(name = "phone_number" , nullable = false , unique = true)
     private String phoneNumber;
 
+    @Column(name = "active")
+    private Boolean active = true;
 }

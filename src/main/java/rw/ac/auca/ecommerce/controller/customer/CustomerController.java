@@ -21,11 +21,11 @@ import java.util.Objects;
  */
 @RequiredArgsConstructor
 @Controller
-@RequestMapping("/customer/")
+@RequestMapping("/customers")
 public class CustomerController {
     private final ICustomerService customerService;
 
-    @GetMapping("/search/all")
+    @GetMapping("")
     public String getAllCustomers(Model model){
         List<Customer> customers = customerService.findCustomersByState(Boolean.TRUE);
         model.addAttribute("customers" ,customers);

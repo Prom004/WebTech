@@ -1,12 +1,10 @@
 package rw.ac.auca.ecommerce.core.product.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import rw.ac.auca.ecommerce.core.base.AbstractBaseEntity;
+import rw.ac.auca.ecommerce.core.category.model.Category;
 import rw.ac.auca.ecommerce.core.util.product.EStockState;
 
 import java.time.LocalDate;
@@ -19,7 +17,8 @@ import java.util.UUID;
  * @author Jeremie Ukundwa Tuyisenge
  * @version 1.0
  */
-@Getter @Setter
+@Getter
+@Setter
 @Entity
 public class Product extends AbstractBaseEntity {
     @Column(name = "product_name" , nullable = false)
@@ -40,4 +39,19 @@ public class Product extends AbstractBaseEntity {
     @Column(name = "stock_state" , nullable = false)
     @Enumerated(EnumType.STRING)
     private EStockState stockState;
+
+    @Column(name = "quantity" , nullable = false)
+    private Integer quantity = 0;
+
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    public double getPrice() {
+        return price;
+    }
+
 }

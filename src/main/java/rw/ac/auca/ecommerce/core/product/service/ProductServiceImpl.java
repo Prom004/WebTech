@@ -29,12 +29,13 @@ public class ProductServiceImpl implements IProductService{
 
     @Override
     public Product updateProduct(Product theProduct) {
-        return null;
+        return productRepository.save(theProduct);
     }
 
     @Override
     public Product deleteProduct(Product theProduct) {
-        return null;
+        theProduct.setActive(Boolean.FALSE);
+        return productRepository.save(theProduct);
     }
 
     @Override
